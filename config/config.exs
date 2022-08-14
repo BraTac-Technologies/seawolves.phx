@@ -17,6 +17,14 @@ config :wolves, WolvesWeb.Endpoint,
   pubsub_server: Wolves.PubSub,
   live_view: [signing_salt: "nN0n0dYN"]
 
+config :dart_sass,
+  version: "1.43.1",
+  default: [
+    args: ~w(css/app.scss ../priv/static/assets/app.css),
+    cd: Path.expand("../assets", __DIR__)
+  ]
+
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

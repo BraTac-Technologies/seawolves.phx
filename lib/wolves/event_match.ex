@@ -4,12 +4,28 @@ defmodule Wolves.EventMatch do
   """
   import Ecto.Query, warn: false
   alias Wolves.Repo
-  alias Wolves.Events.Event
-  alias Wolves.Matches.Match
-  alias TennisPhx.Events.EventMatch
+  alias Wolves.Events.EventMatch
 
   @doc """
   Returns the list of player_tour.
   """
+
+  def toggle_event_match(event_id, match_id) do
+    query = from(em in EventMatch, where: em.event_id == ^event_id and em.match_id == ^match_id )
+    assoc = Repo.one(query)
+    # require IEx; IEx.pry
+    if assoc == nil do
+      %EventMatch{}
+      |> EventMatch.changeset(%{event_id: event_id, match_id: match_id})
+      |> Repo.insert()
+    else
+      Repo.delete(assoc)
+    end
+  end
+
+  def list_matches_in_event(event_id) do
+    query = from(em in EventMatch, where: em.event_id == ^event_id, preload: [match: :player])
+    Repo.all(query)
+  end
 
 end

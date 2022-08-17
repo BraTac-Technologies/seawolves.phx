@@ -17,10 +17,14 @@
             <h5><%= String.upcase(event.status) %> <%= event.result1 %>-<%= event.result2 %></h5>
             <p><em><%= event.date %></em></p>
             <p>
-            <ul>
+            <%= for result <- Wolves.EventMatch.list_matches_in_event(event.id) do %>
             
-
+            <ul>
+            <b><%= result.match.result1 %>:<%= result.match.result2 %> </b>
+            | <%= result.match.player.name %> vs <%= result.match.rival_player %>
+            
             </ul>
+            <% end %>
             </p>
           </div>
 

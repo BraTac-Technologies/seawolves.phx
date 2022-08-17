@@ -30,16 +30,16 @@
       <td><%= event.result2 %></td>
       <td> | </td>
       <td>
-        <span><%= link "Show", to: Routes.event_path(@conn, :show, event) %></span>
-        <span><%= link "Edit", to: Routes.event_path(@conn, :edit, event) %></span>
-        <span><%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.event_path(@socket, :show, event) %></span>
+        <span><%= link "Edit", to: Routes.event_path(@socket, :edit, event) %></span>
+        <span><%= link "Delete", to: Routes.event_path(@socket, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+<span><%= link "New Event", to: Routes.event_path(@socket, :new) %></span>
 
 <h1>Listing Players</h1>
 
@@ -61,16 +61,16 @@
       <td><%= player.status %></td>
       <td> | </td>
       <td>
-        <span><%= link "Show", to: Routes.player_path(@conn, :show, player) %></span>
-        <span><%= link "Edit", to: Routes.player_path(@conn, :edit, player) %></span>
-        <span><%= link "Delete", to: Routes.player_path(@conn, :delete, player), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.player_path(@socket, :show, player) %></span>
+        <span><%= link "Edit", to: Routes.player_path(@socket, :edit, player) %></span>
+        <span><%= link "Delete", to: Routes.player_path(@socket, :delete, player), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Player", to: Routes.player_path(@conn, :new) %></span>
+<span><%= link "New Player", to: Routes.player_path(@socket, :new) %></span>
 
 <h1>Listing Matches</h1>
 
@@ -78,14 +78,17 @@
   <thead>
     <tr>
       <th>Player_id</th>
-      <td> | </td>
+      <th> | </th>
       <th>Rival player</th>
-      <td> | </td>
+      <th> | </th>
       <th>Result1</th>
-      <td> | </td>
+      <th> | </th>
       <th>Result2</th>
-      <td> | </td>
-      <th></th>
+      <th> | </th>
+      <th> many_to_many </th>
+      <th> | </th>
+      <th> </th>
+      <th>Admin </th>
     </tr>
   </thead>
   <tbody>
@@ -99,15 +102,21 @@
       <td> | </td>
       <td><%= match.result2 %></td>
       <td> | </td>
+      <form phx-submit="match_event">
+      <td>  <%= select(:event_id, :event_id, Enum.map(@events, &{[&1.rival, " formated date"], &1.id}), prompt: [key: "Choose a tour winner"]) %> </td>
+      <%= hidden_input :match_id, :match_id, value: match.id %>
+      <td> <%= submit "Add", phx_disable_with: "Adding...." %> </td>
+      </form>
+      <td> | </td>
       <td>
-        <span><%= link "Show", to: Routes.match_path(@conn, :show, match) %></span>
-        <span><%= link "Edit", to: Routes.match_path(@conn, :edit, match) %></span>
-        <span><%= link "Delete", to: Routes.match_path(@conn, :delete, match), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.match_path(@socket, :show, match) %></span>
+        <span><%= link "Edit", to: Routes.match_path(@socket, :edit, match) %></span>
+        <span><%= link "Delete", to: Routes.match_path(@socket, :delete, match), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Match", to: Routes.match_path(@conn, :new) %></span>
+<span><%= link "New Match", to: Routes.match_path(@socket, :new) %></span>
 

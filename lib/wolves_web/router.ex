@@ -21,7 +21,7 @@ defmodule WolvesWeb.Router do
     resources "/events", EventController
     resources "/players", PlayerController
     resources "/matches", MatchController
-    get "/admin", AdminController, :index
+    live "/admin", AdminLive
   end
 
   # Other scopes may use custom stacks.

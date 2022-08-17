@@ -21,6 +21,11 @@ defmodule Wolves.Matches do
     Repo.all(Match)
   end
 
+  def list_matches_with_status_of_win do
+    query = from(m in Match, where: m.result1 > m.result2)
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single match.
 

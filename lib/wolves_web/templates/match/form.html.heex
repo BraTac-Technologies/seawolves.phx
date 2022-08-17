@@ -5,8 +5,8 @@
     </div>
   <% end %>
 
-  <%= label f, :player_id %>
-  <%= text_input f, :player_id %>
+  <%= label f, :player_id %>  
+  <%= select(f, :player_id, Enum.map(@players, &{&1.name, &1.id}), prompt: [key: "Choose a tour winner"]) %>
   <%= error_tag f, :player_id %>
 
   <%= label f, :rival_player %>

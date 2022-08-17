@@ -3,6 +3,7 @@ defmodule WolvesWeb.MatchController do
 
   alias Wolves.Matches
   alias Wolves.Matches.Match
+  alias Wolves.Players
 
   def index(conn, _params) do
     matches = Matches.list_matches()
@@ -11,7 +12,8 @@ defmodule WolvesWeb.MatchController do
 
   def new(conn, _params) do
     changeset = Matches.change_match(%Match{})
-    render(conn, "new.html", changeset: changeset)
+    players = Players.list_players()
+    render(conn, "new.html", changeset: changeset, players: players)
   end
 
   def create(conn, %{"match" => match_params}) do

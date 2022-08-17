@@ -1,0 +1,113 @@
+<h1>Listing Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rival</th>
+      <td> | </td>
+      <th>Status</th>
+      <td> | </td>
+      <th>Date</th>
+      <td> | </td>
+      <th>Result1</th>
+      <td> | </td>
+      <th>Result2</th>
+      <td> | </td>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for event <- @events do %>
+    <tr>
+      <td><%= event.rival %></td>
+      <td> | </td>
+      <td><%= event.status %></td>
+      <td> | </td>
+      <td><%= event.date %></td>
+      <td> | </td>
+      <td><%= event.result1 %></td>
+      <td> | </td>
+      <td><%= event.result2 %></td>
+      <td> | </td>
+      <td>
+        <span><%= link "Show", to: Routes.event_path(@conn, :show, event) %></span>
+        <span><%= link "Edit", to: Routes.event_path(@conn, :edit, event) %></span>
+        <span><%= link "Delete", to: Routes.event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Event", to: Routes.event_path(@conn, :new) %></span>
+
+<h1>Listing Players</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <td> | </td>
+      <th>Status</th>
+      <td> | </td>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for player <- @players do %>
+    <tr>
+      <td><%= player.name %></td>
+      <td> | </td>
+      <td><%= player.status %></td>
+      <td> | </td>
+      <td>
+        <span><%= link "Show", to: Routes.player_path(@conn, :show, player) %></span>
+        <span><%= link "Edit", to: Routes.player_path(@conn, :edit, player) %></span>
+        <span><%= link "Delete", to: Routes.player_path(@conn, :delete, player), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Player", to: Routes.player_path(@conn, :new) %></span>
+
+<h1>Listing Matches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Player_id</th>
+      <td> | </td>
+      <th>Rival player</th>
+      <td> | </td>
+      <th>Result1</th>
+      <td> | </td>
+      <th>Result2</th>
+      <td> | </td>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for match <- @matches do %>
+    <tr>
+      <td><%= match.player.name %></td>      
+      <td> | </td>
+      <td><%= match.rival_player %></td>
+      <td> | </td>
+      <td><%= match.result1 %></td>
+      <td> | </td>
+      <td><%= match.result2 %></td>
+      <td> | </td>
+      <td>
+        <span><%= link "Show", to: Routes.match_path(@conn, :show, match) %></span>
+        <span><%= link "Edit", to: Routes.match_path(@conn, :edit, match) %></span>
+        <span><%= link "Delete", to: Routes.match_path(@conn, :delete, match), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Match", to: Routes.match_path(@conn, :new) %></span>
+

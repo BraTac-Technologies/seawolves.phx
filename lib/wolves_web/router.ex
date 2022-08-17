@@ -20,6 +20,8 @@ defmodule WolvesWeb.Router do
     get "/", PageController, :index
     resources "/events", EventController
     resources "/players", PlayerController
+    resources "/matches", MatchController
+    get "/admin", AdminController, :index
   end
 
   # Other scopes may use custom stacks.

@@ -8,6 +8,7 @@ defmodule WolvesWeb.PageController do
     events = Events.list_events()
     matches = Matches.list_matches()
     won_matches = Matches.list_matches_with_status_of_win()
-    render(conn, "index.html", events: events, matches: matches, won_matches: won_matches)
+    won_events = Events.list_events_with_status_of_win()
+    render(conn, "index.html", events: events, matches: matches, won_matches: won_matches, won_events: won_events)
   end
 end

@@ -21,6 +21,11 @@ defmodule Wolves.Events do
     Repo.all(Event)
   end
 
+  def list_events_with_status_of_win do
+    query = from(e in Event, where: e.status == "победа")
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single event.
 

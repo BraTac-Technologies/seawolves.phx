@@ -22,17 +22,11 @@
               <ul>
                 <li><i class="bi bi-chevron-right"></i> <strong>Основан: </strong> <span>1 Ноември 2021</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>Картотекирани играчи: </strong> <span>5</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Изиграни мачове: </strong> <span><%= length(@matches) %></span></li>
-                <%= if is_nil(length(@won_matches)) || is_nil(length(@matches)) do %>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Процент победи: </strong> <span>-</span></li>
-                <% else %>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Процент победи: </strong> <span><%= trunc(length(@won_matches) / length(@matches)) * 100 %>%</span></li>
-                <% end %>
+                <li><i class="bi bi-chevron-right"></i> <strong>Зала: </strong> <span>"Център за тенис на маса" - гр. Бургас</span></li>
               </ul>
             </div>
             <div class="col-lg-6">
-              <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Зала: </strong> <span>"Център за тенис на маса" - гр. Бургас</span></li>
+              <ul>                
                 <li><i class="bi bi-chevron-right"></i> <strong>Сегашна дивизия:</strong> <span>В3 Югоизточна</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>Временно класиране:</strong> <span>#1</span></li>
                 <li><i class="bi bi-chevron-right"></i> <strong>Резултат от мин. сезон:</strong> <span>-</span></li>
@@ -46,6 +40,54 @@
       </div>
 
     </div><!-- End About Me -->
+
+    <div class="counts container">
+
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="bi bi-emoji-smile"></i>
+            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"><%= length(@matches) %></span>
+            <p>Изиграни мачове</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+          <div class="count-box">
+            <i class="bi bi-journal-richtext"></i>
+            <%= if is_nil(length(@won_matches)) || is_nil(length(@matches)) do %>
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter">0</span>
+            <% else %>
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"><%= trunc(length(@won_matches) / length(@matches)) * 100 %></span>
+            <% end %>
+            <p>% Победени мачове</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <i class="bi bi-headset"></i>
+            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"><%= length(@events)%></span>
+            <p>Двубои срещу отбори</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <i class="bi bi-award"></i>
+            <%= if is_nil(length(@won_events)) || is_nil(length(@events)) do %>
+              <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1" class="purecounter">0</span>
+            <% else %>
+              <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1" class="purecounter"><%= trunc(length(@won_events) / length(@events)) * 100 %></span>
+            <% end %>
+            <p>% Победи срещу отбори</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- End Counts -->
 
 
 

@@ -9,31 +9,24 @@
       <div class="row">
         <div class="col-lg-6">
           <h3 class="resume-title">В3 Югоизточна</h3>
+          
+          <%= for event <- @events do %>
+
           <div class="resume-item">
-            <h4>СКТМ Златен Дракон 2</h4>
-            <h5>ПОБЕДА 3-0</h5>
-            <p><em>09.10.2022</em></p>
+            <h4><%= event.rival %></h4>
+            <h5><%= String.upcase(event.status) %> <%= event.result1 %>-<%= event.result2 %></h5>
+            <p><em><%= event.date %></em></p>
             <p>
             <ul>
-              <li><b>3:1</b> | <i>Ясен Костов vs Живко Алексиев</i></li>
-              <li><b>3:0</b> | Тодор Имелов vs Тодор Стоянов</li>
-              <li><b>3:1</b> | Симеон Стоянов vs Красимир Жерков</li>
+            
 
             </ul>
             </p>
           </div>
-          <div class="resume-item">
-            <h4>СКТМ Торнадо VII - Стара Загора</h4>
-            <h5>ПОБЕДА 3-0</h5>
-            <p><em>09.10.2022</em></p>
-            <p>
-            <ul>
-              <li><b>3:1</b> | <i>Росен Стефанов vs Иван Иванов</i></li>
-              <li><b>3:0</b> | Тодор Имелов vs Иван Иванов</li>
-              <li><b>3:1</b> | Симеон Стоянов vs Иван Иванов</li>
-            </ul>
-            </p>
-          </div>
+
+          <% end %>
+
+       
         </div>
         <div class="col-lg-6">
           <!-- <h3 class="resume-title">В3 Югоизточна</h3> -->

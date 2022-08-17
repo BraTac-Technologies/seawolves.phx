@@ -30,13 +30,15 @@ defmodule WolvesWeb.MatchController do
 
   def show(conn, %{"id" => id}) do
     match = Matches.get_match!(id)
-    render(conn, "show.html", match: match)
+    players = Players.list_players()
+    render(conn, "show.html", match: match, players: players)
   end
 
   def edit(conn, %{"id" => id}) do
     match = Matches.get_match!(id)
+    players = Players.list_players()
     changeset = Matches.change_match(match)
-    render(conn, "edit.html", match: match, changeset: changeset)
+    render(conn, "edit.html", match: match, changeset: changeset, players: players)
   end
 
   def update(conn, %{"id" => id, "match" => match_params}) do

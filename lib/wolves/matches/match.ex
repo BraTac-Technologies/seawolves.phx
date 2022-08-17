@@ -3,6 +3,7 @@ defmodule Wolves.Matches.Match do
   import Ecto.Changeset
 
   alias Wolves.Players.Player
+  alias Wolves.Events.Event
 
   schema "matches" do
 
@@ -12,6 +13,14 @@ defmodule Wolves.Matches.Match do
     field :rival_player, :string
 
     timestamps()
+
+       many_to_many(
+      :events,
+      Event,
+      join_through: "event_match",
+      on_replace: :delete
+    )
+
   end
 
   @doc false

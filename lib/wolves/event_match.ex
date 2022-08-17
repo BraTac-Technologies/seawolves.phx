@@ -23,4 +23,9 @@ defmodule Wolves.EventMatch do
     end
   end
 
+  def list_matches_in_event(event_id) do
+    query = from(em in EventMatch, where: em.event_id == ^event_id, preload: [match: :player])
+    Repo.all(query)
+  end
+
 end

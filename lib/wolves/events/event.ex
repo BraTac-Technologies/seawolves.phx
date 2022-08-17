@@ -2,6 +2,8 @@ defmodule Wolves.Events.Event do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Wolves.Matches.Match
+
   schema "events" do
     field :date, :naive_datetime
     field :result1, :integer
@@ -10,6 +12,13 @@ defmodule Wolves.Events.Event do
     field :status, :string
 
     timestamps()
+
+    many_to_many(
+      :matches,
+      Match,
+      join_through: "event_match",
+      on_replace: :delete
+    )
   end
 
   @doc false

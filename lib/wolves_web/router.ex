@@ -1,6 +1,8 @@
 defmodule WolvesWeb.Router do
   use WolvesWeb, :router
 
+  import WolvesWeb.AdminAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule WolvesWeb.Router do
     plug :put_root_layout, {WolvesWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_admin
   end
 
   pipeline :api do
@@ -18,10 +21,6 @@ defmodule WolvesWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/events", EventController
-    resources "/players", PlayerController
-    resources "/matches", MatchController
-    live "/admin", AdminLive
   end
 
   # Other scopes may use custom stacks.
@@ -56,5 +55,43 @@ defmodule WolvesWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  ## Authentication routes
+
+  scope "/", WolvesWeb do
+    pipe_through [:browser, :redirect_if_admin_is_authenticated]
+
+
+    get "/admins/log_in", AdminSessionController, :new
+    post "/admins/log_in", AdminSessionController, :create
+    get "/admins/reset_password", AdminResetPasswordController, :new
+    post "/admins/reset_password", AdminResetPasswordController, :create
+    get "/admins/reset_password/:token", AdminResetPasswordController, :edit
+    put "/admins/reset_password/:token", AdminResetPasswordController, :update
+  end
+
+  scope "/", WolvesWeb do
+    pipe_through [:browser, :require_authenticated_admin]
+
+    get "/admins/settings", AdminSettingsController, :edit
+    put "/admins/settings", AdminSettingsController, :update
+    get "/admins/settings/confirm_email/:token", AdminSettingsController, :confirm_email
+    live "/admin", AdminLive
+    resources "/events", EventController
+    resources "/players", PlayerController
+    resources "/matches", MatchController
+    get "/admins/register", AdminRegistrationController, :new
+    post "/admins/register", AdminRegistrationController, :create
+  end
+
+  scope "/", WolvesWeb do
+    pipe_through [:browser]
+
+    delete "/admins/log_out", AdminSessionController, :delete
+    get "/admins/confirm", AdminConfirmationController, :new
+    post "/admins/confirm", AdminConfirmationController, :create
+    get "/admins/confirm/:token", AdminConfirmationController, :edit
+    post "/admins/confirm/:token", AdminConfirmationController, :update
   end
 end

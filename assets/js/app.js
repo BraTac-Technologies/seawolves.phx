@@ -97,6 +97,12 @@ import 'bootstrap';
         this.classList.toggle('bi-x')
     })
 
+    on('click', '.mobile-nav-toggle2', function (e) {
+        select('#navbar').classList.toggle('navbar-mobile')
+        this.classList.toggle('bi-list')
+        this.classList.toggle('bi-x')
+    })
+
     /**
      * Scrool with ofset on links with a class name .scrollto
      */

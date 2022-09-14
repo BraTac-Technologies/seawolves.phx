@@ -21,10 +21,6 @@ defmodule WolvesWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/events", EventController
-    resources "/players", PlayerController
-    resources "/matches", MatchController
-    live "/admin", AdminLive
   end
 
   # Other scopes may use custom stacks.
@@ -66,8 +62,7 @@ defmodule WolvesWeb.Router do
   scope "/", WolvesWeb do
     pipe_through [:browser, :redirect_if_admin_is_authenticated]
 
-    get "/admins/register", AdminRegistrationController, :new
-    post "/admins/register", AdminRegistrationController, :create
+
     get "/admins/log_in", AdminSessionController, :new
     post "/admins/log_in", AdminSessionController, :create
     get "/admins/reset_password", AdminResetPasswordController, :new
@@ -82,6 +77,12 @@ defmodule WolvesWeb.Router do
     get "/admins/settings", AdminSettingsController, :edit
     put "/admins/settings", AdminSettingsController, :update
     get "/admins/settings/confirm_email/:token", AdminSettingsController, :confirm_email
+    live "/admin", AdminLive
+    resources "/events", EventController
+    resources "/players", PlayerController
+    resources "/matches", MatchController
+    get "/admins/register", AdminRegistrationController, :new
+    post "/admins/register", AdminRegistrationController, :create
   end
 
   scope "/", WolvesWeb do

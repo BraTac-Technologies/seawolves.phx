@@ -12,7 +12,10 @@
      <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   </head>
-  <body>    
+  <body> 
+  <%= if @current_admin do %>
+    <%= render WolvesWeb.LayoutView, "_admin_menu.html", assigns %>
+  <% end %>   
     <%= @inner_content %>
   </body>
 </html>

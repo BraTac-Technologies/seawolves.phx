@@ -41,7 +41,7 @@
           <div class="resume-item">
             <h4><%= event.rival %></h4>
             <h5><%= String.upcase(event.status) %> <%= event.result1 %>-<%= event.result2 %></h5>
-            <p><em><%= event.date %></em></p>
+            <p><em><%=  NimbleStrftime.format(event.date, "%d %b '%y в %H:%Mч.")%></em></p>
             <p>
             <%= for result <- Wolves.EventMatch.list_matches_in_event(event.id) do %>
             

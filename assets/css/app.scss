@@ -280,6 +280,12 @@ h6 {
     }
 }
 
+@media (min-width: 990px) {
+    .mobile-nav-toggle2 {
+            display: none;
+        }
+}
+
 .navbar-mobile {
     position: fixed;
     overflow: hidden;

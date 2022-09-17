@@ -56,7 +56,7 @@
         <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
           <div class="count-box">
             <i class="bi bi-journal-richtext"></i>
-            <%= if is_nil(length(@won_matches)) || is_nil(length(@matches))  || length(@matches) == 0 %>
+            <%= if is_nil(length(@won_matches)) || is_nil(length(@matches))  || length(@matches) == 0 do %>
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter">0</span>
             <% else %>
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"><%= trunc(length(@won_matches) / length(@matches)) * 100 %></span>

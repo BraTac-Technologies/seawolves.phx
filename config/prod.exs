@@ -14,6 +14,9 @@ config :wolves, WolvesWeb.Endpoint, cache_static_manifest: "priv/static/cache_ma
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :wolves, WolvesWeb.Endpoint,
+  check_origin: ["https://wolves.bratac.net", "https://www.wolves.bratac.net", "https://bratac.net", "https://www.bratac.net"]
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

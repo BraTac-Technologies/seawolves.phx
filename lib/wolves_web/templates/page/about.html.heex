@@ -47,15 +47,15 @@
 
         <div class="col-lg-3 col-md-6">
           <div class="count-box">
-            <i class="bi bi-emoji-smile"></i>
+            <i class="bi bi-file-bar-graph-fill"></i>
             <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"><%= length(@matches) %></span>
             <p>Изиграни мачове</p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box">
-            <i class="bi bi-journal-richtext"></i>
+          <div class="count-box">            
+            <i class="bi bi-percent"></i>
             <%= if is_nil(length(@won_matches)) || is_nil(length(@matches))  || length(@matches) == 0 do %>
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter">0</span>
             <% else %>
@@ -67,7 +67,7 @@
 
         <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
-            <i class="bi bi-headset"></i>
+            <i class="bi bi-journal-richtext"></i>
             <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"><%= length(@events)%></span>
             <p>Двубои срещу отбори</p>
           </div>
